@@ -27,8 +27,7 @@ const ButtonClose = styled.button`
   font-weight: bold;
 `;
 
-export const Dropdown = ({ open, handleClose, children }) =>
-{
+export const Dropdown = ({ open, handleClose, children }) => {
   const stop = e => e.stopPropagation();
   return (
     <Backdrop show={open} onClick={handleClose}>
