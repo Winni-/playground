@@ -5,7 +5,7 @@ import { Dropdown } from './dropdown'
 import { Registration } from './registration'
 import { Login } from './login'
 
-export class Index extends Component {
+export default class Index extends Component {
   state = {
     userDropdownOpen: false,
   }

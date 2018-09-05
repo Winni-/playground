@@ -1,3 +1,1 @@
-import { combineReducers } from 'redux'
-
-export const rootReducer = combineReducers({})
+export { default as index } from './index/reducer'

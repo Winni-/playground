@@ -1,26 +1,18 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
+import createHistory from 'history/createBrowserHistory'
 
-import { Index } from './index/index'
+import { configureStore } from './configureStore'
+import { Switcher } from './switcher'
 
-import { rootReducer } from './rootReducer'
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
-const savedState = {}
-
-export const store = createStore(
-  rootReducer,
-  savedState,
-  composeEnhancers(applyMiddleware())
-)
+const history = createHistory()
+const { store } = configureStore(history, window.REDUX_STATE)
 
 export class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Index />
+        <Switcher />
       </Provider>
     )
   }
