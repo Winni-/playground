@@ -69,19 +69,13 @@ const Spinner = () => (
   </SpinnerContainer>
 )
 
-const UniversalComponent = universal(
-  ({ page }) => {
-    console.log(page)
-    return import(`./${page}`)
-  },
-  {
-    minDelay: 500,
+const UniversalComponent = universal(({ page }) => import(`./${page}`), {
+  minDelay: 500,
 
-    loading: () => <Spinner />,
+  loading: () => <Spinner />,
 
-    error: () => <div>PAGE NOT FOUND - 404</div>,
-  }
-)
+  error: () => <div>PAGE NOT FOUND - 404</div>,
+})
 
 const switcher = ({ page }) => {
   return (
@@ -92,7 +86,7 @@ const switcher = ({ page }) => {
 }
 
 const mapStateToProps = state => ({
-  page: state.index,
+  page: state.rootReducer.location,
 })
 
 export const Switcher = connect(mapStateToProps)(switcher)

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Dropdown } from './dropdown'
 import { Registration } from './registration'
 import { Login } from './login'
+import { Button, Input, Card } from '../view'
 
 export default class Index extends Component {
   state = {
@@ -19,55 +20,58 @@ export default class Index extends Component {
           <Header>
             <Logo src={logo} />
             <User onClick={this.handleUserToggle}>Login/SignUp</User>
+            <Dropdown
+              open={this.state.userDropdownOpen}
+              handleClose={this.handleUserToggle}
+            >
+              <LoginRegisterGrid>
+                <Login />
+                <Registration />
+              </LoginRegisterGrid>
+            </Dropdown>
           </Header>
         </Container>
 
         <Container>
           <Search>
-            <input placeholder="Search" type="search" />
-            <button>Search</button>
+            <Input size="big" />
+            <Button size="big">Search</Button>
           </Search>
         </Container>
-        <Suggestions />
 
         <Container>
-          <h3>Popular</h3>
+          <h2>Popular</h2>
           <ContentGrid>
-            <Item>
-              <img src="" alt="" />
-              <h5>Nike x Acronym Vapormax</h5>
-              <div>White/Volt</div>
-              <div>$140</div>
-            </Item>
+            <Card price={110} />
+            <Card price={111} />
+            <Card price={112} />
+            <Card price={113} />
+            <Card price={114} />
+            <Card price={115} />
+            <Card price={116} />
+            <Card price={117} />
           </ContentGrid>
 
-          <h3>Upcomming</h3>
-          <ContentGrid />
+          <h2>Upcomming</h2>
+          <ContentGrid>
+            <Card price={110} />
+            <Card price={110} />
+            <Card price={110} />
+          </ContentGrid>
         </Container>
-        <Dropdown
-          open={this.state.userDropdownOpen}
-          handleClose={this.handleUserToggle}
-        >
-          <LoginRegisterGrid>
-            <Login />
-            <Registration />
-          </LoginRegisterGrid>
-        </Dropdown>
       </div>
     )
   }
 }
 
 const Search = styled.div`
-  grid-column: 3 / span 1;
+  text-align: center;
 `
-const Suggestions = props => <div>{props.children}</div>
 const ContentGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1.5em;
 `
-const Item = props => <div>{props.children}</div>
 const Container = styled.div`
   max-width: 80em;
   margin: 0 auto;
@@ -83,7 +87,7 @@ const Logo = styled.img`
   grid-column: 1 / span 1;
   align-self: center;
 `
-const User = styled.button`
+const User = styled(Button)`
   grid-column: 3 / span 1;
 `
 const LoginRegisterGrid = styled.div`

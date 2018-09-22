@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { connectRoutes } from 'redux-first-router'
 
-import routesMap from './routersMap'
+import routesMap from './routesMap'
 import * as reducers from './rootReducer'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -11,7 +11,7 @@ export const configureStore = (history, preloadedState) => {
     history,
     routesMap
   )
-
+  console.log(reducers)
   const rootReducer = combineReducers({ ...reducers, location: reducer })
   const middlewares = applyMiddleware(middleware)
   const enhancers = composeEnhancers(enhancer, middlewares)
