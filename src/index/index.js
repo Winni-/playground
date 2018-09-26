@@ -5,8 +5,9 @@ import { Dropdown } from './dropdown'
 import { Registration } from './registration'
 import { Login } from './login'
 import { Button, Input, Card } from '../view'
+import { connect } from 'react-redux'
 
-export default class Index extends Component {
+class index extends Component {
   state = {
     userDropdownOpen: false,
   }
@@ -42,14 +43,16 @@ export default class Index extends Component {
         <Container>
           <h2>Popular</h2>
           <ContentGrid>
-            <Card price={110} />
-            <Card price={111} />
-            <Card price={112} />
-            <Card price={113} />
-            <Card price={114} />
-            <Card price={115} />
-            <Card price={116} />
-            <Card price={117} />
+            {this.props.products.sneakers.map(sneaker => (
+              <Card
+                key={sneaker.id}
+                img={sneaker.images[0]}
+                caption={`${sneaker.brand} ${sneaker.coBrand} ${
+                  sneaker.model
+                } ${sneaker.color}`}
+                price={sneaker.retail}
+              />
+            ))}
           </ContentGrid>
 
           <h2>Upcomming</h2>
@@ -94,3 +97,7 @@ const LoginRegisterGrid = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
 `
+const mapStateToProps = state => ({
+  products: state.rootReducer.products,
+})
+export default connect(mapStateToProps)(index)
