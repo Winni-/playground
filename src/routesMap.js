@@ -1,4 +1,4 @@
 export default {
   HOME: '/',
-  PRODUCT: '/product',
+  PRODUCT: '/product/:id',
 }

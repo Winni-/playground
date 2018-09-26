@@ -6,6 +6,7 @@ import { Registration } from './registration'
 import { Login } from './login'
 import { Button, Input, Card } from '../view'
 import { connect } from 'react-redux'
+import Link from 'redux-first-router-link'
 
 class index extends Component {
   state = {
@@ -44,14 +45,15 @@ class index extends Component {
           <h2>Popular</h2>
           <ContentGrid>
             {this.props.products.sneakers.map(sneaker => (
-              <Card
-                key={sneaker.id}
-                img={sneaker.images[0]}
-                caption={`${sneaker.brand} ${sneaker.coBrand} ${
-                  sneaker.model
-                } ${sneaker.color}`}
-                price={sneaker.retail}
-              />
+              <Link to={`/product/${sneaker.id}`} key={sneaker.id}>
+                <Card
+                  img={sneaker.images[0]}
+                  caption={`${sneaker.brand} ${sneaker.coBrand} ${
+                    sneaker.model
+                  } ${sneaker.color}`}
+                  price={sneaker.retail}
+                />
+              </Link>
             ))}
           </ContentGrid>
 

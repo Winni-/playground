@@ -11,7 +11,6 @@ export const configureStore = (history, preloadedState) => {
     history,
     routesMap
   )
-  console.log(reducers)
   const rootReducer = combineReducers({ ...reducers, location: reducer })
   const middlewares = applyMiddleware(middleware)
   const enhancers = composeEnhancers(enhancer, middlewares)
