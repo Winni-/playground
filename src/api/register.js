@@ -16,7 +16,12 @@ export const sendJSON = async (address, method, data = {}) => {
   return res.json()
 }
 
-export const register = async (username, password, passwordConfirm, email) => {
+export const register = async ({
+  username,
+  password,
+  passwordConfirm,
+  email,
+}) => {
   return await sendJSON('/v1/user/register', 'POST', {
     username,
     password,

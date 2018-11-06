@@ -4,8 +4,9 @@ import { api } from '../../api'
 
 export function* watchRegistration(action) {
   while (true) {
-    const data = yield take(actionTypes.REGISTER)
-    const response = yield call(api.register, [...data])
+    const { payload } = yield take(actionTypes.REGISTER)
+    console.log(payload)
+    const response = yield call(api.register, payload)
     response.error
       ? yield put(actionTypes.REGISTER_ERROR, response)
       : yield put(actionTypes.REGISTER_SUCCESS, response)
