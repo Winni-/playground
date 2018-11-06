@@ -1,10 +1,13 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { connectRoutes } from 'redux-first-router'
+import createSagaMiddleware from 'redux-saga'
 
 import routesMap from './routesMap'
 import * as reducers from './rootReducer'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+export const sagaMiddleware = createSagaMiddleware()
 
 export const configureStore = (history, preloadedState) => {
   const { reducer, middleware, enhancer, thunk } = connectRoutes(
@@ -12,7 +15,7 @@ export const configureStore = (history, preloadedState) => {
     routesMap
   )
   const rootReducer = combineReducers({ ...reducers, location: reducer })
-  const middlewares = applyMiddleware(middleware)
+  const middlewares = applyMiddleware(middleware, sagaMiddleware)
   const enhancers = composeEnhancers(enhancer, middlewares)
   const store = createStore(rootReducer, preloadedState, enhancers)
 
