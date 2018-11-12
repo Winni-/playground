@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { authenticateUser } from './actions'
 import { Button, TextInput, Label, Heading } from 'evergreen-ui'
-import { validate } from '../../util/validate'
+import { validate } from '../util/validate'
 
 const login = ({ authenticateUser }) => {
   const [email, setEmail] = useState('')

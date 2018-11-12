@@ -4,9 +4,10 @@ import styled from 'styled-components'
 import { Dropdown } from './dropdown'
 import { Registration } from './user/registration'
 import { Login } from './user/login'
-import { Button, Input, Card } from '../view'
+import { Card } from '../view'
 import { connect } from 'react-redux'
 import Link from 'redux-first-router-link'
+import { Button, SearchInput, Heading } from 'evergreen-ui'
 
 class index extends Component {
   state = {
@@ -21,7 +22,15 @@ class index extends Component {
         <Container>
           <Header>
             <Logo src={logo} />
-            <User onClick={this.handleUserToggle}>Login/SignUp</User>
+            <User>
+              <Button
+                onClick={this.handleUserToggle}
+                iconBefore="user"
+                appearance="minimal"
+              >
+                Login/SignUp
+              </Button>
+            </User>
             <Dropdown
               open={this.state.userDropdownOpen}
               handleClose={this.handleUserToggle}
@@ -36,13 +45,12 @@ class index extends Component {
 
         <Container>
           <Search>
-            <Input size="big" />
-            <Button size="big">Search</Button>
+            <SearchInput />
           </Search>
         </Container>
 
         <Container>
-          <h2>Popular</h2>
+          <Heading size={800}>Popular</Heading>
           <ContentGrid>
             {this.props.products.sneakers.map(sneaker => (
               <Link to={`/product/${sneaker.id}`} key={sneaker.id}>
@@ -57,7 +65,7 @@ class index extends Component {
             ))}
           </ContentGrid>
 
-          <h2>Upcomming</h2>
+          <Heading size={800}>Upcomming</Heading>
           <ContentGrid>
             <Card price={110} />
             <Card price={110} />
@@ -84,7 +92,7 @@ const Container = styled.div`
 const Header = styled.header`
   height: 5em;
   display: grid;
-  grid-template-columns: 5em 70em 5em;
+  grid-template-columns: 5em auto 10em;
 `
 const Logo = styled.img`
   max-height: 100%;
@@ -92,8 +100,10 @@ const Logo = styled.img`
   grid-column: 1 / span 1;
   align-self: center;
 `
-const User = styled(Button)`
+const User = styled.div`
   grid-column: 3 / span 1;
+  text-align: right;
+  padding: 1.5em;
 `
 const LoginRegisterGrid = styled.div`
   display: grid;

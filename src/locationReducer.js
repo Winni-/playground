@@ -8,5 +8,6 @@ export const location = (state = initialState, action = {}) =>
 const components = {
   HOME: 'HOME',
   PRODUCT: 'PRODUCT',
+  ADMIN: 'ADMIN',
   [NOT_FOUND]: 'Not_found',
 }

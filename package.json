@@ -2,7 +2,8 @@
   "name": "market",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {    
+  "dependencies": {
+    "evergreen-ui": "^4.3.0",
     "history": "^4.7.2",
     "ramda": "^0.25.0",
     "react": "^16.7.0-alpha.0",

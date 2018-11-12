@@ -10,3 +10,12 @@ export const createUser = (username, password, passwordConfirm, email) => {
     },
   }
 }
+export const authenticateUser = (email, password) => {
+  return {
+    type: actionTypes.LOGIN,
+    payload: {
+      email,
+      password,
+    },
+  }
+}

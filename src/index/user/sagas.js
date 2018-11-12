@@ -8,7 +8,18 @@ export function* watchRegistration(action) {
     console.log(payload)
     const response = yield call(api.register, payload)
     response.error
-      ? yield put(actionTypes.REGISTER_ERROR, response)
-      : yield put(actionTypes.REGISTER_SUCCESS, response)
+      ? yield put({ type: actionTypes.REGISTER_ERROR, payload: response })
+      : yield put({ type: actionTypes.REGISTER_SUCCESS, payload: response })
+  }
+}
+
+export function* watchLogin(action) {
+  while (true) {
+    const { payload } = yield take(actionTypes.LOGIN)
+    console.log(payload)
+    const response = yield call(api.login, payload)
+    response.error
+      ? yield put({ type: actionTypes.LOGIN_ERROR, payload: response })
+      : yield put({ type: actionTypes.LOGIN_SUCCESS, payload: response })
   }
 }

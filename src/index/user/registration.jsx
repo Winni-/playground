@@ -1,15 +1,12 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { createUser } from './actions'
-import { Input } from './input'
+import { Button, TextInput, Label, Heading } from 'evergreen-ui'
+import { validate } from '../../util/validate'
 
 const nameFromEmail = email => {
   if (email.indexOf('@') === -1) return ''
   return email.split('@')[0]
-}
-export const validate = (email, password) => {
-  if (email && password) return true
-  return false
 }
 
 const registration = ({ createUser }) => {
@@ -25,28 +22,37 @@ const registration = ({ createUser }) => {
   }
   return (
     <form onSubmit={submit}>
-      <h3>Register</h3>
-      <label htmlFor="rEmail">email:</label>
-      <br />
-      <Input
+      <Heading size={800} marginBottom={24}>
+        Register
+      </Heading>
+      <Label htmlFor="rEmail" display="block">
+        Email:
+      </Label>
+      <TextInput
         id="rEmail"
         name="rEmail"
         type="email"
         value={email}
         onChange={e => setEmail(e.target.value)}
+        marginBottom={24}
       />
-      <br />
-      <label htmlFor="rPassword">password:</label>
-      <br />
-      <Input
+
+      <Label htmlFor="rPassword" display="block">
+        Password:
+      </Label>
+
+      <TextInput
         id="rPassword"
         name="rPassword"
         type="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
+        marginBottom={24}
       />
-      <br />
-      <button type="submit">Submit</button>
+
+      <div>
+        <Button type="submit">Submit</Button>
+      </div>
     </form>
   )
 }
