@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { CreateProduct } from './createProduct'
+import {ProductList} from './productList'
 
 const Grid = styled.div`
   display: grid;
@@ -11,9 +12,8 @@ const Grid = styled.div`
 export const Dashboard = () => {
   return (
     <Grid>
-      <div>
-        <CreateProduct />
-      </div>
+      <CreateProduct />
+      <ProductList/>
     </Grid>
   )
 }

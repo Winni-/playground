@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Button, TextInput, Label, Heading } from 'evergreen-ui'
+import { CreateProductView } from './createProductView'
+import {createProduct as actionCreateProduct} from '../actions'
+import {connect} from 'react-redux';
 
-export const CreateProduct = () => {
+const createProduct = ({sessionID, createProduct}) => {
   const [productID, setProductID] = useState('')
   const [brand, setBrand] = useState('')
   const [cobrand, setCobrand] = useState('')
@@ -10,81 +12,47 @@ export const CreateProduct = () => {
   const [images, setImages] = useState([])
   const [description, setDescription] = useState('')
   const [retail, setRetail] = useState('')
+  
+  console.log(sessionID)
+  
+  const handleSubmit = e => {
+    e.preventDefault()
+    createProduct({
+      productID,
+      brand,
+      cobrand,
+      model,
+      color,
+      images,
+      description,
+      retail,
+      sessionID
+    })
+  }
   return (
-    <form action="">
-      <Heading size={600} marginBottom={24}>
-        Create product
-      </Heading>
-
-      <Label htmlFor="productID">productID:</Label>
-      <TextInput
-        id="productID"
-        name="productID"
-        value={productID}
-        onChange={e => setProductID(e.target.value)}
-        marginBottom={8}
-      />
-
-      <Label htmlFor="brand">brand:</Label>
-      <TextInput
-        id="brand"
-        name="brand"
-        value={brand}
-        onChange={e => setBrand(e.target.value)}
-        marginBottom={8}
-      />
-
-      <Label htmlFor="">cobrand:</Label>
-      <TextInput
-        id="cobrand"
-        name="cobrand"
-        value={cobrand}
-        onChange={e => setCobrand(e.target.value)}
-        marginBottom={8}
-      />
-
-      <Label htmlFor="">model:</Label>
-      <TextInput
-        id="model"
-        name="model"
-        value={model}
-        onChange={e => setModel(e.target.value)}
-        marginBottom={8}
-      />
-
-      <Label htmlFor="">color:</Label>
-      <TextInput
-        id="color"
-        name="color"
-        value={color}
-        onChange={e => setColor(e.target.value)}
-        marginBottom={8}
-      />
-
-      <Label htmlFor="">images:</Label>
-
-      <Label htmlFor="">description:</Label>
-      <TextInput
-        id="description"
-        name="description"
-        value={description}
-        onChange={e => setDescription(e.target.value)}
-        marginBottom={8}
-        appearance="textarea"
-      />
-
-      <Label htmlFor="">retail:</Label>
-      <TextInput
-        id="retail"
-        name="retail"
-        type="number"
-        value={retail}
-        onChange={e => setRetail(e.target.value)}
-        marginBottom={8}
-      />
-      <div>
-        <Button type="submit">Submit</Button>
-      </div>
-    </form>
+    <CreateProductView
+      onSubmit={handleSubmit}
+      productID={productID}
+      setProductID={e => setProductID(e.target.value)}
+      brand={brand}
+      setBrand={e => setBrand(e.target.value)}
+      cobrand={cobrand}
+      setCobrand={e => setCobrand(e.target.value)}
+      model={model}
+      setModel={e => setModel(e.target.value)}
+      color={color}
+      setColor={e => setColor(e.target.value)}
+      images={images}
+      setImages={e => setImages(e.target.value)}
+      description={description}
+      setDescription={e => setDescription(e.target.value)}
+      retail={retail}
+      setRetail={e => setRetail(e.target.value)}
+    />
   )
 }
+const mapStateToProps = state => ({
+  sessionID: state.rootReducer._session.sessionID
+})
+
+export const CreateProduct = connect(mapStateToProps, {createProduct: actionCreateProduct})(createProduct)

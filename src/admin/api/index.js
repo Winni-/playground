@@ -1,4 +1,4 @@
-//import { sendJSON } from '../../api/sendJSON'
+import { sendJSON } from '../../api/sendJSON'
 
 const login = async ({ password, email }) => {
   console.log('Api')
@@ -12,7 +12,11 @@ const login = async ({ password, email }) => {
   //   email,
   // })
 }
+const createProduct =  async (product) => {
+  return await sendJSON('/v1/product/create', 'POST', product)
+}
 
 export const api = {
   login,
+  createProduct
 }
