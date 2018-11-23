@@ -9,7 +9,7 @@ import { rootSaga } from './rootSaga'
 
 const history = createHistory()
 const session = loadField('session')
-const savedState = { rootReducer: { session: session, _session: session } }
+const savedState = { session, _session: session }
 const { store } = configureStore(history, savedState)
 
 sagaMiddleware.run(rootSaga)

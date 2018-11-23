@@ -19,6 +19,6 @@ const Admin = ({ loggedIn }) => {
   )
 }
 const mapStateToProps = state => {
-  return { loggedIn: state.rootReducer._session.sessionID.length > 0 }
+  return { loggedIn: state._session.sessionID.length > 0 }
 }
 export default connect(mapStateToProps)(Admin)

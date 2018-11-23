@@ -1,8 +1,16 @@
-import React from 'react';
-import { Table, TableHead, Heading, SearchTableHeaderCell, TextTableHeaderCell, TableBody, TableRow, TextTableCell } from 'evergreen-ui'
+import React, {useEffect} from 'react';
+import { Table, TableHead, Heading, SearchTableHeaderCell, TextTableHeaderCell, TableBody, TableRow, TextTableCell } from 'evergreen-ui';
+import {connect} from 'react-redux';
+import { getProductList } from '../actions'
 
-export const ProductList = () => {
+const productList = ({getProductList}) => {
   const products = [];
+  
+  useEffect(()=>{
+    if( products.length <= 0) {
+      getProductList()
+    }
+  })
   return (
    <div>
      <Heading size={ 800 } marginBottom={24}>Мне позвонили, узнать hr ли это</Heading>
@@ -32,3 +40,4 @@ export const ProductList = () => {
   );
 };
 
+export const ProductList = connect(null,{getProductList})(productList)

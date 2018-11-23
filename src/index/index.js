@@ -110,6 +110,6 @@ const LoginRegisterGrid = styled.div`
   grid-template-columns: 50% 50%;
 `
 const mapStateToProps = state => ({
-  products: state.rootReducer.products,
+  products: state.products,
 })
 export default connect(mapStateToProps)(index)

@@ -1,5 +1,6 @@
 import { take, call, put } from 'redux-saga/effects'
 import { types } from './actions'
+import { actionTypes } from '../constants'
 import { api } from './api'
 
 export function* watchLogin() {
@@ -18,5 +19,14 @@ export function* watchCreateProduct() {
     response.error
       ? yield put({ type: types.CREATE_PRODUCT_ERROR, payload: response })
       : yield put({ type: types.CREATE_PRODUCT_SUCCESS, payload: response })
+  }
+}
+export function* watchGetProduct() {
+  while (true) {
+    const { payload } = yield take(actionTypes.GET_PRODUCT_LIST)
+    const response = yield call(api.getProducts, payload)
+    response.error
+      ? yield put({ type: actionTypes.GET_PRODUCT_LIST_ERROR, payload: response })
+      : yield put({ type: actionTypes.GET_PRODUCT_LIST_SUCCESS, payload: response })
   }
 }

@@ -3,7 +3,7 @@ import { connectRoutes } from 'redux-first-router'
 import createSagaMiddleware from 'redux-saga'
 
 import routesMap from './routesMap'
-import * as reducers from './rootReducer'
+import {reducers} from './rootReducer'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
