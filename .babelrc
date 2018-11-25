@@ -1,13 +1,9 @@
 {
   "presets": [
-    ["@babel/preset-env", {
-      "targets": {
-        "node": "current"
-      }
-    }],
-    "@babel/preset-stage-0"
+    "react-app"
   ],
   "plugins": [
-    "@babel/plugin-transform-runtime"
+    ["@babel/plugin-proposal-optional-chaining", { "loose": false }],
+    ["@babel/plugin-proposal-class-properties", { "loose": false }]
   ]
 }

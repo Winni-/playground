@@ -14,7 +14,7 @@ const pages = {
   ADMIN: <Admin />,
 }
 const mapStateToProps = state => ({
-  page: state?.location,
+  page: state?.location?.type,
 })
 
 export const Switcher = connect(mapStateToProps)(switcher)
