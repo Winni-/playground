@@ -1,15 +1,12 @@
 import {actionTypes} from '../constants'
 export const types = {
-  LOGIN: '_LOGIN',
-  LOGIN_ERROR: '_LOGIN_ERROR',
-  LOGIN_SUCCESS: '_LOGIN_SUCCESS',
+  NETWORK_ERROR: 'NETWORK_ERROR',
   CREATE_PRODUCT: 'CREATE_PRODUCT',
   CREATE_PRODUCT_SUCCESS: 'CREATE_PRODUCT_SUCCESS',
-  CREATE_PRODUCT_ERROR: 'CREATE_PRODUCT_ERROR',
 }
 export const authenticateUser = (email, password) => {
   return {
-    type: types.LOGIN,
+    type: actionTypes.LOGIN,
     payload: {
       email,
       password,

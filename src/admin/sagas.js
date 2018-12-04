@@ -8,8 +8,8 @@ export function* watchLogin() {
     const { payload } = yield take(types.LOGIN)
     const response = yield call(api.login, payload)
     response.error
-      ? yield put({ type: types.LOGIN_ERROR, payload: response })
-      : yield put({ type: types.LOGIN_SUCCESS, payload: response })
+      ? yield put({ type: types.NETWORK_ERROR, payload: response })
+      : yield put({ type: actionTypes.LOGIN_SUCCESS, payload: response })
   }
 }
 export function* watchCreateProduct() {
@@ -17,7 +17,7 @@ export function* watchCreateProduct() {
     const { payload } = yield take(types.CREATE_PRODUCT)
     const response = yield call(api.createProduct, payload)
     response.error
-      ? yield put({ type: types.CREATE_PRODUCT_ERROR, payload: response })
+      ? yield put({ type: types.NETWORK_ERROR, payload: response })
       : yield put({ type: types.CREATE_PRODUCT_SUCCESS, payload: response })
   }
 }
@@ -26,7 +26,7 @@ export function* watchGetProduct() {
     const { payload } = yield take(actionTypes.GET_PRODUCT_LIST)
     const response = yield call(api.getProducts, payload)
     response.error
-      ? yield put({ type: actionTypes.GET_PRODUCT_LIST_ERROR, payload: response })
+      ? yield put({ type: actionTypes.NETWORK_ERROR, payload: response })
       : yield put({ type: actionTypes.GET_PRODUCT_LIST_SUCCESS, payload: response })
   }
 }

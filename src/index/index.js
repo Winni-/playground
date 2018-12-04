@@ -7,7 +7,7 @@ import { Login } from './user/login'
 import { Card } from '../view'
 import { connect } from 'react-redux'
 import Link from 'redux-first-router-link'
-import { Button, SearchInput, Heading } from 'evergreen-ui'
+import { Button, Heading, SearchInput } from 'evergreen-ui'
 
 class index extends Component {
   state = {
@@ -52,17 +52,20 @@ class index extends Component {
         <Container>
           <Heading size={800}>Popular</Heading>
           <ContentGrid>
-            {this.props.products.sneakers.map(sneaker => (
-              <Link to={`/product/${sneaker.id}`} key={sneaker.id}>
-                <Card
-                  img={sneaker.images[0]}
-                  caption={`${sneaker.brand} ${sneaker.coBrand} ${
-                    sneaker.model
-                  } ${sneaker.color}`}
-                  price={sneaker.retail}
-                />
-              </Link>
-            ))}
+            {/*{ this.props.products ?*/}
+              {/*this.props.products.map(sneaker => (*/}
+                {/*<Link to={ `/product/${sneaker.id}` } key={ sneaker.id }>*/}
+                  {/*<Card*/}
+                    {/*img={ sneaker.images[0] }*/}
+                    {/*caption={ `${sneaker.brand} ${sneaker.coBrand} ${*/}
+                      {/*sneaker.model*/}
+                      {/*} ${sneaker.color}` }*/}
+                    {/*price={ sneaker.retail }*/}
+                  {/*/>*/}
+                {/*</Link>*/}
+              {/*)) :*/}
+              {/*<div>Loading...</div>*/}
+            {/*}*/}
           </ContentGrid>
 
           <Heading size={800}>Upcomming</Heading>

@@ -5,7 +5,7 @@ import {ProductList} from './productList'
 
 const Grid = styled.div`
   display: grid;
-  grid-auto-columns: 300px;
+  grid-template-columns: 300px calc(100vW - 300px);
   grid-auto-rows: 500px;
 `
 

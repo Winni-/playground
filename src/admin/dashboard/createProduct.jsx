@@ -12,8 +12,7 @@ const createProduct = ({sessionID, createProduct}) => {
   const [images, setImages] = useState([])
   const [description, setDescription] = useState('')
   const [retail, setRetail] = useState('')
-  
-  console.log(sessionID)
+
   
   const handleSubmit = e => {
     e.preventDefault()
@@ -52,7 +51,7 @@ const createProduct = ({sessionID, createProduct}) => {
   )
 }
 const mapStateToProps = state => ({
-  sessionID: state._session.sessionID
+  sessionID: state.session.sessionID
 })
 
 export const CreateProduct = connect(mapStateToProps, {createProduct: actionCreateProduct})(createProduct)

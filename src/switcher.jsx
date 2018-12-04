@@ -5,7 +5,6 @@ import Product from './product'
 import Admin from './admin'
 
 const switcher = ({ page }) => {
-  console.log(page)
   return pages[page]
 }
 const pages = {

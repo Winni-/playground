@@ -18,15 +18,17 @@ export const session = (state = initialState, action) => {
         username: action.payload.username,
         email: action.payload.email,
       }
-    case actionTypes.REGISTER_ERROR:
-      return state
     case actionTypes.LOGIN_SUCCESS:
       return {
         ...session,
         sessionID: action.payload.sessionID,
       }
-    case actionTypes.LOGIN_ERROR:
-      return state
+    case actionTypes.NETWORK_ERROR:
+      switch (action.payload?.statusCode) {
+        case 401:
+          return initialState
+      }
+      
     default:
       return state
   }
