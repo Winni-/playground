@@ -19,3 +19,8 @@ export const authenticateUser = (email, password) => {
     },
   }
 }
+export const logoutUser = () => {
+  return {
+    type: actionTypes.LOGOUT
+  }
+}

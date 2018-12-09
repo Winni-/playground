@@ -1,14 +1,10 @@
 import { saveField } from './util/localStorage'
 import { actionTypes } from './constants'
-import { types } from './admin/actions'
-import { take, call } from 'redux-saga/effects'
-export function* saveSession(action) {
+import { call, take } from 'redux-saga/effects'
+
+export function* watchStatePersistence(){
   while (true) {
-    const { payload } = yield take([
-      actionTypes.LOGIN_SUCCESS,
-      types.LOGIN_SUCCESS,
-    ])
-    console.log(payload)
+    const { payload } = yield take([actionTypes.LOGIN_SUCCESS, actionTypes.LOGOUT])
     yield call(saveField, payload, 'session')
   }
 }

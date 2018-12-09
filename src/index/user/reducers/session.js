@@ -20,15 +20,16 @@ export const session = (state = initialState, action) => {
       }
     case actionTypes.LOGIN_SUCCESS:
       return {
-        ...session,
+        ...state,
         sessionID: action.payload.sessionID,
       }
+    case actionTypes.LOGOUT:
+      return initialState;
     case actionTypes.NETWORK_ERROR:
       switch (action.payload?.statusCode) {
         case 401:
           return initialState
       }
-      
     default:
       return state
   }
