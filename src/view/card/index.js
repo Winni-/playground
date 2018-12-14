@@ -2,17 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import defaultImg from './default.jpg'
 
-export const Card = ({ price, img = defaultImg, caption = 'none' }) => {
+export const Card = ({key, product: {brand, cobrand, images=defaultImg, model, retail}}) => {
   return (
     <Figure>
       <Price>
-        {price ? '$' : null}
-        {price}
+        {retail}
       </Price>
       <ImgContainer>
-        <Img src={img} />
+        <Img src={images} />
       </ImgContainer>
-      <Figcaption>{caption}</Figcaption>
+      <Figcaption>{`${brand} ${cobrand}`}<br />{model}</Figcaption>
     </Figure>
   )
 }
