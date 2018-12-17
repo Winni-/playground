@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import defaultImg from './default.jpg'
 
-export const Card = ({key, product: {brand, cobrand, images=defaultImg, model, retail}}) => {
+export const Card = ({product: {brand, cobrand, images=defaultImg, model, retail}}) => {
   return (
     <Figure>
       <Price>

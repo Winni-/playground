@@ -4,17 +4,18 @@ import logo from './logo.svg'
 import { Dropdown } from './dropdown'
 import { Registration } from './user/registration'
 import { Login } from './user/login'
-import { Card } from '../view'
 import { Button, Heading, SearchInput } from 'evergreen-ui'
 import { Products } from './products'
+import { Link } from 'react-router-dom'
 
-export const View = ( {userDropdownOpen, handleUserToggle, products} ) =>{
+export const View = ( { userDropdownOpen, handleUserToggle, products } ) =>{
   return (
     <div>
       <Container>
         <Header>
           <Logo src={ logo }/>
           <User>
+            <Link to='/user'>user</Link>
             <Button
               onClick={ handleUserToggle }
               iconBefore="user"
