@@ -4,7 +4,7 @@ import { CreateProduct } from './createProduct'
 import { ProductList } from './productList'
 import { Button } from 'evergreen-ui'
 import { connect } from 'react-redux'
-import { logoutUser } from '../../index/user/actions'
+import { logoutUser } from '../../user/actions'
 
 const Grid = styled.div`
   display: grid;

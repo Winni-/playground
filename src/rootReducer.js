@@ -1,9 +1,7 @@
 import { products } from './index/reducer'
-import { session } from './index/user/reducers'
-import user from './user/reducer'
+import { session } from './user/sessionReducer'
 
 export const reducers = {
   products,
-  session,
-  user,
+  session
 }

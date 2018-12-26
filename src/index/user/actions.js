@@ -10,17 +10,15 @@ export const createUser = (username, password, passwordConfirm, email) => {
     },
   }
 }
-export const authenticateUser = (email, password) => {
+export const authenticateUser = (email, password, history) => {
   return {
     type: actionTypes.LOGIN,
     payload: {
       email,
       password,
     },
-  }
-}
-export const logoutUser = () => {
-  return {
-    type: actionTypes.LOGOUT
+    meta: {
+      history
+    }
   }
 }

@@ -13,10 +13,11 @@ export const configureStore = (history, preloadedState) => {
   const middlewares = applyMiddleware(sagaMiddleware)
   const enhancers = composeEnhancers(middlewares)
   const store = createStore(rootReducer, preloadedState, enhancers)
-
+ 
   if (module.hot && process.env.NODE_ENV === 'development') {
     module.hot.accept('./rootReducer', () => {
       const reducers = require('./rootReducer')
+      console.log(reducers);
       const rootReducer = combineReducers({ ...reducers})
       store.replaceReducer(rootReducer)
     })

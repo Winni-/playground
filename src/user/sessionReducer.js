@@ -1,4 +1,4 @@
-import { actionTypes } from '../../../constants'
+import { actionTypes } from '../constants'
 const initialState = {
   sessionID: '',
   id: '',
@@ -7,7 +7,7 @@ const initialState = {
   username: '',
   email: '',
 }
-export const session = (state = initialState, action) => {
+export const session = ( state = initialState, action) => {
   switch (action.type) {
     case actionTypes.REGISTER_SUCCESS:
       return {
@@ -29,6 +29,8 @@ export const session = (state = initialState, action) => {
       switch (action.payload?.statusCode) {
         case 401:
           return initialState
+        default:
+          return state
       }
     default:
       return state

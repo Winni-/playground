@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { authenticateUser } from './actions'
-import { Button, TextInput, Label, Heading } from 'evergreen-ui'
+import { Button, Heading, Label, TextInput } from 'evergreen-ui'
 import { validate } from '../../util/validate'
+import { withRouter } from 'react-router-dom'
 
-const login = ({ authenticateUser }) => {
+const login = ( { authenticateUser, history } ) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+  
   const handleSubmit = e => {
     e.preventDefault()
-    if (validate(email, password)) authenticateUser(email, password)
+    if ( validate(email, password) ) authenticateUser(email, password, history)
   }
-
+  
   return (
-    <form onSubmit={handleSubmit}>
-      <Heading size={800} marginBottom={24}>
+    <form onSubmit={ handleSubmit }>
+      <Heading size={ 800 } marginBottom={ 24 }>
         Login
       </Heading>
       <Label htmlFor="Email" display="block">
@@ -25,9 +26,9 @@ const login = ({ authenticateUser }) => {
         id="Email"
         name="Email"
         type="email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        marginBottom={24}
+        value={ email }
+        onChange={ e => setEmail(e.target.value) }
+        marginBottom={ 24 }
       />
       <Label htmlFor="Password" display="block">
         Password:
@@ -36,9 +37,9 @@ const login = ({ authenticateUser }) => {
         id="Password"
         name="Password"
         type="password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-        marginBottom={24}
+        value={ password }
+        onChange={ e => setPassword(e.target.value) }
+        marginBottom={ 24 }
       />
       <div>
         <Button type="submit">Submit</Button>
@@ -46,7 +47,7 @@ const login = ({ authenticateUser }) => {
     </form>
   )
 }
-export const Login = connect(
+export const Login = withRouter(connect(
   null,
-  { authenticateUser }
-)(login)
+  { authenticateUser },
+)(login))

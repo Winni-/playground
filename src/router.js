@@ -4,6 +4,7 @@ import Index from './index/index'
 import Product from './product'
 import Admin from './admin'
 import { User } from './user'
+import { PrivateRoute } from './util/privateRoute'
 
 const Wrapper = ({children}) => children;
 
@@ -14,7 +15,7 @@ export const Router = () => {
         <Route path="/" exact component={ Index }/>
         <Route path="/product/:id" component={ Product }/>
         <Route path="/admin" component={ Admin }/>
-        <Route path="/user" component={ User }/>
+        <PrivateRoute path="/user" component={ User }/>
       </Wrapper>
     </BrowserRouter>
   );
