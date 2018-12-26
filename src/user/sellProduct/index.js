@@ -27,6 +27,7 @@ const sellProduct = ( { addSlot, sessionID } ) => {
           name="ProductID"
           value={ productID }
           onChange={ setProductID }
+          required
         />
         <Label htmlFor="Size" display="block">
           Size:
@@ -38,7 +39,8 @@ const sellProduct = ( { addSlot, sessionID } ) => {
           value={ size }
           onChange={ e => setSize(e.target.value) }
           marginBottom={ 24 }
-          required={true}
+          required
+          validationMessage="This field is required"
         />
         <Label htmlFor="Amount" display="block">
           Amount:

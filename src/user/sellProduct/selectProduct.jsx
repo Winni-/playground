@@ -4,7 +4,7 @@ import { SearchInput } from 'evergreen-ui'
 import styled from 'styled-components'
 import { getProductList } from '../../index/actions'
 
-const selectProduct = ( { products, value, getProductList, onChange } ) => {
+const selectProduct = ( { products, value, getProductList, onChange, required } ) => {
   const [searchValue, setSearchValue] = useState('')
   useEffect(() => {
     if ( products.length === 0 ) getProductList()
@@ -15,7 +15,8 @@ const selectProduct = ( { products, value, getProductList, onChange } ) => {
     onChange(id)
   }
   return (
-    <div>
+    <Container>
+      <HiddenInput value={value}  required={required}/>
       <SearchInput placeholder="Filter sneakers..."
                    onChange={ e => setSearchValue(e.target.value) }
                    value={ searchValue }/>
@@ -33,7 +34,7 @@ const selectProduct = ( { products, value, getProductList, onChange } ) => {
           </button>
         )) }
       </Grid>
-    </div>
+    </Container>
   )
 }
 const Product = styled.figure`
@@ -45,6 +46,15 @@ const Product = styled.figure`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(10, 80px);
+`
+const HiddenInput = styled.input`
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+`
+const Container = styled.div`
+  position: relative;
 `
 const mapStateToProps = state => ({
   products: state.products,
