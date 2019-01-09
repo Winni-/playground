@@ -9,11 +9,14 @@ const Grid = styled.div`
 `
 
 
-export const Products = ( { products } ) =>{
+export const Products = ( { products } ) => {
   return (
     <Grid>
       { products ?
-        products.map(product => (<Card key={product._id} product={product} />)) :
+        products.map(product => (<Card key={ product._id }
+                                       product={ product }
+                                       link={ `product/${ product._id }` }
+        />)) :
         <div>Loading...</div>
       }
     </Grid>

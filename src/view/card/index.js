@@ -1,18 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 import defaultImg from './default.jpg'
+import { Link } from 'react-router-dom'
 
-export const Card = ({product: {brand, cobrand, images=defaultImg, model, retail}}) => {
+export const Card = ( { product: { brand, cobrand, images = defaultImg, model, retail }, link } ) => {
   return (
-    <Figure>
-      <Price>
-        {retail}
-      </Price>
-      <ImgContainer>
-        <Img src={images} />
-      </ImgContainer>
-      <Figcaption>{`${brand} ${cobrand}`}<br />{model}</Figcaption>
-    </Figure>
+    <Link to={link}>
+      <Figure>
+        <Price>
+          { retail }
+        </Price>
+        <ImgContainer>
+          <Img src={ images }/>
+        </ImgContainer>
+        <Figcaption>{ `${ brand } ${ cobrand }` }<br/>{ model }</Figcaption>
+      </Figure>
+    </Link>
   )
 }
 
