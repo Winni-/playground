@@ -12,8 +12,12 @@ const Product = ( { match: { params: { id } }, getProductDetails, products = [] 
   
   useEffect(() => {
     if ( !currentProduct && findProductByID(products, id) ) setCurrentProduct(findProductByID(products, id))
+  },[products])
+  useEffect(() => {
     if ( !currentProduct ) getProductDetails(id)
-  })
+  },[products])
+  
+  //render
   if ( !currentProduct ) return <div>Loading...</div>
   return (
     <div>
