@@ -1,36 +1,33 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { View } from './view'
 import { getProductList } from './actions'
+import { isEmpty } from 'ramda'
 
-class index extends Component {
-  state = {
-    userDropdownOpen: false,
-  }
-  handleUserToggle = e =>{
-    this.setState({ userDropdownOpen: !this.state.userDropdownOpen })
-  }
+const index = ( { products, getProductList } ) => {
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false)
   
-  componentDidMount(){
-    this.props.getProductList()
+  const handleUserToggle = e => {
+    setUserDropdownOpen(!userDropdownOpen)
   }
+  useEffect(() => {
+    if ( isEmpty(products) ) getProductList()
+  })
   
-  render(){
-    return (
-      <View
-        userDropdownOpen={this.state.userDropdownOpen}
-        handleUserToggle={this.handleUserToggle}
-        products={this.props.products}
-      />
-    )
-  }
+  return (
+    <View
+      userDropdownOpen={ userDropdownOpen }
+      handleUserToggle={ handleUserToggle }
+      products={ products }
+    />
+  )
 }
 
 const mapStateToProps = state => ({
   products: state.products,
 })
 const mapDispatchToProps = {
-  getProductList
+  getProductList,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(index)
